@@ -4,7 +4,7 @@ const model = require('./model');
 
 class users extends model{
     
-   //ok
+   //ok...
     login(email,password){
         return new Promise((resolve,reject)=>{
             this.executeSQL('select * from user where email=?',[email])
