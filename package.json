@@ -1,0 +1,29 @@
+{
+  "name": "bolao_restapi",
+  "version": "1.0.0",
+  "description": "RestAPI with CRUD function to Node.js, Express and MySQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "mysql",
+    "restapi",
+    "restful",
+    "bolao"
+  ],
+  "author": "Luciano",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "formidable": "^1.2.2",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5"
+  }
+}
