@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `dbbolao` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `dbbolao` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dbbolao`;
 -- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
@@ -23,7 +23,7 @@ USE `dbbolao`;
 
 DROP TABLE IF EXISTS `competition`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `competition` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -56,7 +56,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `game`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `game` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -103,7 +103,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `game_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `game_user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_game` int NOT NULL,
@@ -137,7 +137,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `guess`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `guess` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_user` int NOT NULL,
@@ -175,7 +175,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `matchx`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `matchx` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_competition` int NOT NULL,
@@ -216,7 +216,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `team`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `team` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -246,7 +246,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `team_competition`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `team_competition` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_team` int NOT NULL,
@@ -279,7 +279,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
