@@ -1,0 +1,17 @@
+# copiar para /etc/systemd/system/bolao.service
+[Unit]
+Description=servidor do bolao
+Documentation=https://www.rocho.com.br
+After=network.target
+
+[Service]
+Environment=PORT=4101
+Environment=NODE_ENV='production'
+
+Type=simple
+User=bolaoman
+ExecStart=/usr/bin/node /opt/bolaoAPI/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
