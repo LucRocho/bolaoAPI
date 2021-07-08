@@ -10,6 +10,7 @@ Environment=NODE_ENV='production'
 
 Type=simple
 User=bolaoman
+WorkingDirectory=/opt/bolaoAPI
 ExecStart=/usr/bin/node /opt/bolaoAPI/server.js
 Restart=on-failure
 

@@ -1,0 +1,1 @@
+certbot certonly -d rocho.com.br -d www.rocho.com.br -d tutu.rocho.com.br -d rachadinha.rocho.com.br -d bolao.rocho.com.br 
