@@ -45,6 +45,6 @@ app.use(function (req, res, next) {
 app.use(cors({origin: ['http://localhost:8888','http://localhost:8080','http://192.168.0.16:8888','http://192.168.0.16:8080']}));
 consign().include('routes').into(app);
 
-app.listen(4000,'127.0.0.1',()=>{
-    console.log('Servidor de teste restul rodando na porta 4000');
+app.listen(4101,'127.0.0.1',()=>{
+    console.log('Servidor de teste restul rodando na porta 4101');
 });
