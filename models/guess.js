@@ -63,10 +63,14 @@ class guess extends model{
                             break;
                         case 'status':
                             if (searchParams[k]=='past'){
+
                                 whereClause+=` and m.match_datetime < addtime(now(),"03:00")`;
+
                             }
                             else if (searchParams[k]=='future'){
+                                
                                 whereClause+=` and m.match_datetime > addtime(now(),"03:00")`;
+                            
                             }
                             break;                   
                         default:
@@ -147,7 +151,7 @@ class guess extends model{
 
     isStarted(guess){
         const newDate = new Date(guess.match_datetime);
-        let serverDate = new Date(new Date().setHours(new Date().getHours() + 2));
+        let serverDate = new Date(new Date().setHours(new Date().getHours() + 3));
         return moment(newDate).format('yyyy-MM-DD HH:mm')<moment(serverDate).format('yyyy-MM-DD HH:mm');
     }
 
