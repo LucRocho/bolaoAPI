@@ -140,7 +140,7 @@ class guess extends model{
                     reject('Palpite inválido');
                 }
                 else{
-                    if (updatedGuess.creation_user!=updateParams['idUser']){
+                    if (updatedGuess.id_user!=updateParams['idUser']){
                         reject('Alteração não autorizada');
                     }
                     else{
