@@ -133,21 +133,44 @@ class guess extends model{
 
     updateGuess(updateParams){
         return new Promise((resolve,reject)=>{
-            let sql=`update guess 
-                        set guess_team1=${updateParams['guessTeam1']}, guess_team2=${updateParams['guessTeam2']},
-                        last_update_user=${updateParams['idUser']}, last_update_date=now()
-                        where id=${updateParams['idGuess']} `;
 
-            
-            this.executeSQL(sql)
-            .then(results=>{
-                resolve(results);
-            }).catch(err=>{
-                reject(err);
-            });
-            
-        });
-    }
+            this.getById('guess',updateParams['idGuess'])
+            .then(updatedGuess=>{
+                if (!updatedGuess) {
+                    reject('Palpite inválido');
+                }
+                else{
+                    if (updatedGuess.creation_user!=updateParams['idUser']){
+                        reject('Alteração não autorizada');
+                    }
+                    else{
+
+                        this.getById('matchx',updatedGuess.id_match)
+                        .then(match=>{
+                            if (this.isStarted(match)){
+                                reject('Alteração não autorizada, partida já iniciada');
+                            }
+                            else{
+                                let sql=`update guess 
+                                set guess_team1=${updateParams['guessTeam1']}, guess_team2=${updateParams['guessTeam2']},
+                                last_update_user=${updateParams['idUser']}, last_update_date=now()
+                                where id=${updateParams['idGuess']} `;
+
+                    
+                                this.executeSQL(sql)
+                                .then(results=>{
+                                    resolve(results);
+                                }).catch(err=>{
+                                    reject(err);
+                                });
+                            }
+                        })
+                        .catch(er=>reject(er))
+                    }
+                }
+            }).catch(e=>reject(e))
+        })};
+    
 
     isStarted(guess){
         
