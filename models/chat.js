@@ -22,13 +22,29 @@ class chat extends model{
 
     }
 
+    //ok
+    getChat(idChat){
+        
+        let sql=`select ch.*,us.name,us.photo
+            from chat ch join user us on ch.creation_user=us.id
+            where ch.id=${idChat}`;      
+        return new Promise((resolve,reject)=>{
+            this.executeSQL(sql)
+            .then(results=>{
+                resolve(results);
+            }).catch(err=>{
+                reject(err);
+            });
+
+        });        
+
+    }
+
     saveChat(req){
         return new Promise((resolve,reject)=>{
-                
                 if (!req.fields.message){
                     reject("Preencha uma mensagem");
                 } else{
-                   
                     let valueParams=[   
                         req.fields.message,
                         req.fields.id_game

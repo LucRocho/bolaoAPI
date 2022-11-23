@@ -3,6 +3,21 @@ const chat = require('../models/chat');
 
 module.exports=(app)=>{
 
+
+    let routeGetById=app.route('/api/chats/chat/:idChat');
+    //ok
+    routeGetById.get((req,res)=> {
+        let ch = new chat(req.app.get('env') == 'development');
+        ch.getChat(req.params.idChat).then(results=>{
+            //res.setHeader('Access-Control-Allow-Origin','*');
+            res.send(results);
+        }).catch(err=>{
+            res.send({ error: err });
+        });
+
+
+    });
+
     let route=app.route('/api/chats/:idGame');
     
     //ok
@@ -18,8 +33,9 @@ module.exports=(app)=>{
 
     });
 
+    let routeSave=app.route('/api/chats/');
     //ok
-    route.post((req,res)=> {
+    routeSave.post((req,res)=> {
         let ch = new chat(req.app.get('env') == 'development');
         ch.saveChat(req).then(results => {
             //res.setHeader('Access-Control-Allow-Origin','*');
