@@ -94,9 +94,6 @@ class match extends model{
 
     saveMatch(req){
         return new Promise((resolve,reject)=>{
-
-                
-                
                 if (!req.fields.id_competition || !req.fields.id_team1 || !req.fields.id_team2
                     || !req.fields.score_team1 || !req.fields.score_team2 || !req.fields.stage
                     || !req.fields.match_datetime){
@@ -127,7 +124,6 @@ class match extends model{
                         'groupx',
                         'match_datetime'
                     ];
-                    
                     this.save('matchx',req,fieldParams,valueParams).then(results=>{
                         //se inclusão, procura a competition a que pertence e insere novo guess para todos users
                         if (!req.fields.id){

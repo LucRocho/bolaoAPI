@@ -20,7 +20,7 @@ module.exports=(app)=>{
 
     
     let routeUpdateGuess=app.route('/api/updateGuess');
-    routeUpdateGuess.get((req,res)=> {
+    routeUpdateGuess.put((req,res)=> {
         let gue = new guess(req.app.get('env') == 'development');
         let updateParams = util.queryStringToJSON(req.query);
         gue.updateGuess(updateParams).then(results=>{

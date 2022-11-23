@@ -10,6 +10,7 @@ class guess extends model{
     getGuesses(searchParams){
         let whereClause='';
         let retrievePoints=false;
+        let orderDesc=false;
         if (searchParams){
             for(var k in searchParams) {
                 if (searchParams[k] && searchParams[k].trim().toUpperCase()!='NULL'){
@@ -17,6 +18,11 @@ class guess extends model{
                         case 'points':
                             if (searchParams[k]='true'){
                                 retrievePoints=true;
+                            }
+                            break;
+                        case 'orderDesc':
+                            if (searchParams[k]='true'){
+                                orderDesc=true;
                             }
                             break;
                         case 'id':
@@ -105,7 +111,7 @@ class guess extends model{
                 where (1=1
                     ${whereClause}
                 )    
-                order by m.match_datetime,t1.name`;      
+                order by m.match_datetime ${(orderDesc?'desc':'asc')} ,t1.name asc`;      
         
         
         return new Promise((resolve,reject)=>{

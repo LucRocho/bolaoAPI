@@ -211,6 +211,8 @@ class game extends model{
                            where id_game=${req.fields.gameId}
                                  and id_user not in  (${req.fields.stringSelectedUsers})`;
             let deletes=[];
+            //console.log(sqlDelete1)
+            //console.log(sqlDelete2)
             deletes.push(sqlDelete1);
             deletes.push(sqlDelete2);
             this.executeTransaction(deletes).then(res=>{
@@ -232,6 +234,8 @@ class game extends model{
                                                 on gam.id_competition=comp.id
                                             where gam.id=${req.fields.gameId}`;
                             let inserts=[];
+                            //console.log(sqlInsert1);
+                            //console.log(sqlInsert2);
                             inserts.push(sqlInsert1);
                             inserts.push(sqlInsert2);
                             this.executeTransaction(inserts).then(res3=>{
@@ -243,6 +247,7 @@ class game extends model{
                     }).catch(err2=>{
                         reject(err2)
                     })
+                    resolve(res)
                 });
             }).catch(err=>{
                 reject(err);

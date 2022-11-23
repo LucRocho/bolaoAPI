@@ -174,7 +174,7 @@ class competition extends model{
     }
 
     getActiveCompetition(){
-        let sql=`select id,name from competition where active=1`;
+        let sql=`select id,name,logo from competition where active=1`;
         return new Promise((resolve,reject)=>{
             this.executeSQL(sql)
             .then(results=>{
