@@ -1,4 +1,5 @@
 const model = require('./model');
+const path = require('path');
 
 class chat extends model{
     
@@ -7,7 +8,7 @@ class chat extends model{
     getChats(idGame){
         
         let sql=`select ch.*,us.name,us.photo
-            ,ch2.message as originalMessage, ch2.creation_date as originalDate, us2.name as originalUserName 
+            ,ch2.message as originalMessage, ch2.creation_date as originalDate, us2.name as originalUserName,ch2.chat_image as imageOriginal
             from chat ch join user us on ch.creation_user=us.id
             left join chat ch2 on ch.id_chat_original=ch2.id
             left join user us2 on ch2.creation_user=us2.id
@@ -29,7 +30,7 @@ class chat extends model{
     getChat(idChat){
         
             let sql=`select ch.*,us.name,us.photo
-                ,ch2.message as originalMessage, ch2.creation_date as originalDate, us2.name as originalUserName 
+                ,ch2.message as originalMessage, ch2.creation_date as originalDate, us2.name as originalUserName,ch2.chat_image as imageOriginal
                 from chat ch join user us on ch.creation_user=us.id
                 left join chat ch2 on ch.id_chat_original=ch2.id
                 left join user us2 on ch2.creation_user=us2.id
@@ -48,14 +49,17 @@ class chat extends model{
 
     saveChat(req){
         return new Promise((resolve,reject)=>{
-                if (!req.fields.message){
+
+                if (!req.fields.message && !req.files.chat_image){
                     reject("Preencha uma mensagem");
                 } else{
+                    if (req.files && req.files.chat_image){
+                        req.fields.message='***IMAGEM***'
+                    }
                     let valueParams=[   
                         req.fields.message,
                         req.fields.id_game,
                     ];
-
                     let fieldParams=[   
                         'message',
                         'id_game',
@@ -66,6 +70,10 @@ class chat extends model{
                         fieldParams.push('id_chat_original');
                     }
 
+                    if (req.files && req.files.chat_image && req.files.chat_image.name){
+                        valueParams.push(`images/${path.parse(req.files.chat_image.path).base}`);
+                        fieldParams.push('chat_image');
+                    }
                     this.save('chat',req,fieldParams,valueParams).then(results=>{
                         resolve(results);
                     }).catch(err=>{
