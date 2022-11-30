@@ -1,5 +1,6 @@
 const chat = require('../models/chat');
-const util = require('../models/util')
+const util = require('../models/util');
+
 
 
 module.exports=(app)=>{

@@ -1,28 +1,25 @@
 const express=require('express');
 const consign=require('consign');
 var path = require('path');
-//const bodyParser=require('body-parser');
 const cors=require('cors');
+const websocket=require('./ws/MyWebSocket')
 var formidable = require("formidable");
+const MyWebSocket = require('./ws/MyWebSocket');
 
 
 const app = express();
 
-//app.use(bodyParser.urlencoded({extended:false, limit:'50mb'}));
-//app.use(bodyParser.json({limit:'50mb'}));
 app.use(express.static('public'));
+
+const myWS=new MyWebSocket().getInstance();
 
 app.use(function (req, res, next) {
 
     if (req.method === 'POST') {
-  
-      
       var form = formidable.IncomingForm({
         uploadDir: path.join(__dirname, '/public/images'),
         keepExtensions: true
       });
-  
-      
       
       form.parse(req, function (err, fields, files) {
         req.body = fields;
@@ -30,15 +27,11 @@ app.use(function (req, res, next) {
         req.files = files;
         next();
       });
-      
-     
-  
     }
     else {
       next();
     }
-  
-  });
+});
   
   
 
