@@ -1,6 +1,6 @@
 const model = require('./model');
 const path = require('path');
-//const MyWebSocket = require('./../ws/MyWebSocket');
+const MyWebSocket = require('./../ws/MyWebSocket');
 
 
 
@@ -118,8 +118,8 @@ class chat extends model{
             this.executeSQL(sqlUpdate).then(res=>{
                 
                 //comunicar via websockets que criou-se nova mensagem
-                //const myWS=new MyWebSocket().getInstance();
-                //myWS.sendMessageAll({'message':'novaMensagem','user': idUser,'game':idGame})
+                const myWS=new MyWebSocket().getInstance();
+                myWS.sendMessageAll({'message':'novaMensagem','user': idUser,'game':idGame})
                 
 
                 resolve(res)
@@ -136,8 +136,8 @@ class chat extends model{
             this.executeSQL(sqlUpdate).then(res=>{
 
                 //comunicar via websockets que mensagens foram lidas para o usuário logado
-                //const myWS=new MyWebSocket().getInstance();
-                //myWS.sendMessageAll({'message':'mensagensLidas','user': idUser,'game':idGame})
+                const myWS=new MyWebSocket().getInstance();
+                myWS.sendMessageAll({'message':'mensagensLidas','user': idUser,'game':idGame})
 
                 resolve(res)
             }).catch(err=>{
