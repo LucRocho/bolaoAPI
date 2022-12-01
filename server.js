@@ -4,14 +4,14 @@ var path = require('path');
 const cors=require('cors');
 const websocket=require('./ws/MyWebSocket')
 var formidable = require("formidable");
-const MyWebSocket = require('./ws/MyWebSocket');
+//const MyWebSocket = require('./ws/MyWebSocket');
 
 
 const app = express();
 
 app.use(express.static('public'));
 
-const myWS=new MyWebSocket().getInstance();
+//const myWS=new MyWebSocket().getInstance();
 
 app.use(function (req, res, next) {
 
