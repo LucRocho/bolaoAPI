@@ -11,6 +11,7 @@ class MyWebSocket {
    }
    
    sendMessageAll(objMensagem){
+      //console.log(objMensagem)
       wss.clients.forEach((client) => {
          const data = JSON.stringify(objMensagem);
          client.send(data);

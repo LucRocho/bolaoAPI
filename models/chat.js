@@ -117,7 +117,7 @@ class chat extends model{
             let sqlUpdate=`update game_user set newMessage=1 where id_game=${idGame} and id_user<>${idUser}`;
             this.executeSQL(sqlUpdate).then(res=>{
                 
-                //comunicar via websockets que criou-se nova mensagem
+                //comunicar via websockets que criou-se nova mensagem de um usuario em um bolao
                 const myWS=new MyWebSocket().getInstance();
                 myWS.sendMessageAll({'message':'novaMensagem','user': idUser,'game':idGame})
                 
@@ -134,7 +134,7 @@ class chat extends model{
             let sqlUpdate=`update game_user set newMessage=0 where id_game=${idGame} and id_user=${idUser}`;
             this.executeSQL(sqlUpdate).then(res=>{
 
-                //comunicar via websockets que mensagens foram lidas para o usuário logado
+                //comunicar via websockets que mensagens foram lidas para o usuário logado no bolao selecionado
                 const myWS=new MyWebSocket().getInstance();
                 myWS.sendMessageAll({'message':'mensagensLidas','user': idUser,'game':idGame})
 

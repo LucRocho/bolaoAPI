@@ -1,6 +1,7 @@
 const util = require('./util');
 const path = require('path');
 const model = require('./model');
+const MyWebSocket = require('./../ws/MyWebSocket');
 
 class match extends model{
     
@@ -78,12 +79,18 @@ class match extends model{
 
     updateScore(updateParams){
         return new Promise((resolve,reject)=>{
+            
             let sql=`update matchx set score_team1=${updateParams['scoreTeam1']}, score_team2=${updateParams['scoreTeam2']},
                         last_update_user=${updateParams['idUser']}, last_update_date=now() where id=${updateParams['idMatch']} `;
 
             
             this.executeSQL(sql)
             .then(results=>{
+                
+                //comunicar via websockets que um placar foi atualizado
+                const myWS=new MyWebSocket().getInstance();
+                myWS.sendMessageAll({'message':'atualizacaoPlacar','text':`GOL !!! ${updateParams['nameTeam1']} ${updateParams['scoreTeam1']} X ${updateParams['scoreTeam2']} ${updateParams['nameTeam2']}`})
+                
                 resolve(results);
             }).catch(err=>{
                 reject(err);
