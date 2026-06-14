@@ -70,12 +70,12 @@ class guess extends model{
                         case 'status':
                             if (searchParams[k]=='past'){
 
-                                whereClause+=` and m.match_datetime < addtime(now(),"03:00")`;
+                                whereClause+=` and m.match_datetime < addtime(now(),"02:00")`;
 
                             }
                             else if (searchParams[k]=='future'){
                                 
-                                whereClause+=` and m.match_datetime > addtime(now(),"03:00")`;
+                                whereClause+=` and m.match_datetime > addtime(now(),"02:00")`;
                             
                             }
                             break;                   
