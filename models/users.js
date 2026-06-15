@@ -14,6 +14,8 @@ class users extends model{
                     }
                     else{
                         let row=results[0];
+                        //resolve(row);
+                        
                         let decryptedBDPassword=util.decryptText(row.password);
                         if (decryptedBDPassword!==password){
                             reject('Senha inválida');
@@ -25,6 +27,7 @@ class users extends model{
                         else{
                             resolve(row);
                         }
+                            
                     }
                 
             }).catch(err=>{
